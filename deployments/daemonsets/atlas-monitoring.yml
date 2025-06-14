@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: atlas-monitoring
+  labels:
+    app: atlas-monitoring
+
+spec:   
+  selector:
+    matchLabels:
+      app: atlas-monitoring
+  template:
+    metadata:
+      labels:
+        app: atlas-monitoring
+    spec:
+      containers:
+      - name: atlas-monitoring
+        image: mongodb/atlas-monitoring-agent:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      
+     
+
+  
